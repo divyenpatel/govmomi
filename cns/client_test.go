@@ -18,9 +18,11 @@ package cns
 
 import (
 	"context"
+
 	"os"
 
 	"github.com/vmware/govmomi/object"
+	"github.com/davecgh/go-spew/spew"
 
 	"github.com/vmware/govmomi/find"
 	"github.com/vmware/govmomi/vim25/soap"
@@ -86,7 +88,7 @@ func TestClient(t *testing.T) {
 			},
 		},
 		BackingObjectDetails: &cnstypes.CnsBlockBackingDetails{
-			CnsBackingObjectDetails: cnstypes.CnsBackingObjectDetails {
+			CnsBackingObjectDetails: cnstypes.CnsBackingObjectDetails{
 				CapacityInMb: 5120,
 			},
 		},
@@ -352,6 +354,38 @@ func TestClient(t *testing.T) {
 	diskUUID := attachVolumeOperationRes.VolumeId.Id
 	t.Logf("Volume attached sucessfully. Disk UUID: %s", diskUUID)
 
+	// Re-Attach same volume to the same node and expect ResourceInUse fault
+	t.Logf("Re-Attaching volume using the spec: %+v", cnsVolumeAttachSpec)
+	attachTask, err = cnsClient.AttachVolume(ctx, cnsVolumeAttachSpecList)
+	if err != nil {
+		t.Errorf("Failed to attach volume. Error: %+v \n", err)
+		t.Fatal(err)
+	}
+	attachTaskInfo, err = GetTaskInfo(ctx, attachTask)
+	if err != nil {
+		t.Errorf("Failed to attach volume. Error: %+v \n", err)
+		t.Fatal(err)
+	}
+	attachTaskResult, err = GetTaskResult(ctx, attachTaskInfo)
+	if err != nil {
+		t.Errorf("Failed to attach volume. Error: %+v \n", err)
+		t.Fatal(err)
+	}
+	if attachTaskResult == nil {
+		t.Fatalf("Empty attach task results")
+		t.FailNow()
+	}
+	reAttachVolumeOperationRes := attachTaskResult.GetCnsVolumeOperationResult()
+	if reAttachVolumeOperationRes.Fault != nil {
+		t.Logf("reAttachVolumeOperationRes.Fault: %+v", spew.Sdump(reAttachVolumeOperationRes.Fault))
+		_, ok := reAttachVolumeOperationRes.Fault.Fault.(*vim25types.ResourceInUse)
+		if !ok {
+			t.Fatalf("Fault is not ResourceInUse")
+		}
+	} else {
+		t.Fatalf("re-attach same volume should fail with ResourceInUse fault")
+	}
+
 	// Test DetachVolume API
 	var cnsVolumeDetachSpecList []cnstypes.CnsVolumeAttachDetachSpec
 	cnsVolumeDetachSpec := cnstypes.CnsVolumeAttachDetachSpec{
@@ -442,7 +476,7 @@ func TestClient(t *testing.T) {
 			ContainerCluster:      containerCluster,
 			ContainerClusterArray: containerClusterArray,
 		},
-		BackingObjectDetails: &cnstypes.CnsVsanFileShareBackingDetails {
+		BackingObjectDetails: &cnstypes.CnsVsanFileShareBackingDetails{
 			CnsFileBackingDetails: cnstypes.CnsFileBackingDetails{
 				CnsBackingObjectDetails: cnstypes.CnsBackingObjectDetails{
 					CapacityInMb: 5120,
