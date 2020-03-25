@@ -18,11 +18,12 @@ package vsan
 
 import (
 	"context"
-	"gitlab.eng.vmware.com/hatchway/govmomi/vsan/methods"
-	vsantypes "gitlab.eng.vmware.com/hatchway/govmomi/vsan/types"
-	"gitlab.eng.vmware.com/hatchway/govmomi/vim25"
-	"gitlab.eng.vmware.com/hatchway/govmomi/vim25/soap"
-	vimtypes "gitlab.eng.vmware.com/hatchway/govmomi/vim25/types"
+
+	"github.com/vmware/govmomi/vim25"
+	"github.com/vmware/govmomi/vim25/soap"
+	vimtypes "github.com/vmware/govmomi/vim25/types"
+	"github.com/vmware/govmomi/vsan/methods"
+	vsantypes "github.com/vmware/govmomi/vsan/types"
 )
 
 // Namespace and Path constants
@@ -54,8 +55,8 @@ func NewClient(ctx context.Context, c *vim25.Client) (*Client, error) {
 // VsanClusterGetConfig calls the Vsan health's VsanClusterGetConfig API.
 func (c *Client) VsanClusterGetConfig(ctx context.Context, cluster vimtypes.ManagedObjectReference) (*vsantypes.VsanConfigInfoEx, error) {
 	req := vsantypes.VsanClusterGetConfig{
-		This:        VsanVcClusterConfigSystemInstance,
-		Cluster:     cluster,
+		This:    VsanVcClusterConfigSystemInstance,
+		Cluster: cluster,
 	}
 
 	res, err := methods.VsanClusterGetConfig(ctx, c.serviceClient, &req)
@@ -64,4 +65,3 @@ func (c *Client) VsanClusterGetConfig(ctx context.Context, cluster vimtypes.Mana
 	}
 	return &res.Returnval, nil
 }
-

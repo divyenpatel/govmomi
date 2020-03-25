@@ -17,13 +17,14 @@ package vsan
 
 import (
 	"context"
-	"github.com/davecgh/go-spew/spew"
-	"gitlab.eng.vmware.com/hatchway/govmomi"
-	"gitlab.eng.vmware.com/hatchway/govmomi/find"
-	"gitlab.eng.vmware.com/hatchway/govmomi/vim25/soap"
-	"gitlab.eng.vmware.com/hatchway/govmomi/vsan/types"
 	"os"
 	"testing"
+
+	"github.com/davecgh/go-spew/spew"
+	"github.com/vmware/govmomi"
+	"github.com/vmware/govmomi/find"
+	"github.com/vmware/govmomi/vim25/soap"
+	"github.com/vmware/govmomi/vsan/types"
 )
 
 func TestClient(t *testing.T) {
@@ -78,6 +79,6 @@ func TestClient(t *testing.T) {
 	}
 
 	if isFileServiceEnabled {
-		t.Logf("Printing one of the clusterConfig where file service is enabled:\n %+v",spew.Sdump(clusterConfigToPrint))
+		t.Logf("Printing one of the clusterConfig where file service is enabled:\n %+v", spew.Sdump(clusterConfigToPrint))
 	}
 }

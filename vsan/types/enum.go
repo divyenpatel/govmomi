@@ -19,15 +19,15 @@ package types
 import (
 	"reflect"
 
-	"gitlab.eng.vmware.com/hatchway/govmomi/vim25/types"
+	"github.com/vmware/govmomi/vim25/types"
 )
 
 type VsanIscsiTargetAuthType string
 
 const (
-	VsanIscsiTargetAuthTypeNoAuth  = VsanIscsiTargetAuthType("NoAuth")
-	VsanIscsiTargetAuthTypeCHAP = VsanIscsiTargetAuthType("CHAP")
-	VsanIscsiTargetAuthTypeCHAP_Mutual  = VsanIscsiTargetAuthType("CHAP_Mutual")
+	VsanIscsiTargetAuthTypeNoAuth                          = VsanIscsiTargetAuthType("NoAuth")
+	VsanIscsiTargetAuthTypeCHAP                            = VsanIscsiTargetAuthType("CHAP")
+	VsanIscsiTargetAuthTypeCHAP_Mutual                     = VsanIscsiTargetAuthType("CHAP_Mutual")
 	VsanIscsiTargetAuthTypeVsanIscsiTargetAuthType_Unknown = VsanIscsiTargetAuthType("AuthType_Unknown")
 )
 
@@ -38,9 +38,9 @@ func init() {
 type VsanBaselinePreferenceType string
 
 const (
-	VsanBaselinePreferenceTypelatestRelease = VsanBaselinePreferenceType("latestRelease")
-	VsanBaselinePreferenceTypelatestPatch = VsanBaselinePreferenceType("latestPatch")
-	VsanBaselinePreferenceTypenoRecommendation = VsanBaselinePreferenceType("noRecommendation")
+	VsanBaselinePreferenceTypelatestRelease                      = VsanBaselinePreferenceType("latestRelease")
+	VsanBaselinePreferenceTypelatestPatch                        = VsanBaselinePreferenceType("latestPatch")
+	VsanBaselinePreferenceTypenoRecommendation                   = VsanBaselinePreferenceType("noRecommendation")
 	VsanBaselinePreferenceTypeVsanBaselinePreferenceType_Unknown = VsanBaselinePreferenceType("VsanBaselinePreferenceType_Unknown")
 )
 

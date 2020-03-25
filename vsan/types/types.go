@@ -17,9 +17,10 @@ limitations under the License.
 package types
 
 import (
-	"gitlab.eng.vmware.com/hatchway/govmomi/vim25/mo"
 	"reflect"
 	"time"
+
+	"github.com/vmware/govmomi/vim25/mo"
 
 	"github.com/vmware/govmomi/vim25/types"
 )
@@ -1390,8 +1391,8 @@ func init() {
 }
 
 type VsanClusterGetConfigRequestType struct {
-	This                types.ManagedObjectReference         `xml:"_this"`
-	Cluster             types.ManagedObjectReference         `xml:"cluster"`
+	This    types.ManagedObjectReference `xml:"_this"`
+	Cluster types.ManagedObjectReference `xml:"cluster"`
 }
 
 func init() {
@@ -1405,27 +1406,27 @@ func init() {
 }
 
 type VsanClusterGetConfigResponse struct {
-	Returnval           VsanConfigInfoEx                      `xml:"returnval"`
+	Returnval VsanConfigInfoEx `xml:"returnval"`
 }
 
 type VsanConfigInfoEx struct {
 	VsanClusterConfigInfo
 
-	DataEfficiencyConfig                VsanDataEfficiencyConfig           `xml:"dataEfficiencyConfig,omitempty"`
-	ResyncIopsLimitConfig               ResyncIopsInfo                     `xml:"resyncIopsLimitConfig,omitempty"`
-	IscsiConfig                         VsanIscsiTargetServiceConfig       `xml:"iscsiConfig,omitempty"`
-	DataEncryptionConfig                VsanDataEncryptionConfig           `xml:"dataEncryptionConfig,omitempty"`
-	ExtendedConfig                      VsanExtendedConfig                 `xml:"extendedConfig,omitempty"`
-	DatastoreConfig                     VsanDatastoreConfig                `xml:"datastoreConfig,omitempty"`
-	PerfsvcConfig                       VsanPerfsvcConfig                  `xml:"perfsvcConfig,omitempty"`
-	UnmapConfig                         VsanUnmapConfig                    `xml:"unmapConfig,omitempty"`
-	VumConfig                           VsanVumConfig                      `xml:"vumConfig,omitempty"`
-	DataProtectionConfig                VsanDataProtectionInfo             `xml:"dataProtectionConfig,omitempty"`
-	FileServiceConfig                   VsanFileServiceConfig              `xml:"fileServiceConfig,omitempty"`
-	BmcConfig                           []VimClusterVsanBmcSpec            `xml:"bmcConfig,omitempty"`
-	MetricsConfig                       VsanMetricsConfig                  `xml:"metricsConfig,omitempty"`
-	RdmaConfig                          VsanRdmaConfig                     `xml:"rdmaConfig,omitempty"`
-	DataInTransitEncryptionConfig       VsanDataInTransitEncryptionConfig  `xml:"dataInTransitEncryptionConfig,omitempty"`
+	DataEfficiencyConfig          VsanDataEfficiencyConfig          `xml:"dataEfficiencyConfig,omitempty"`
+	ResyncIopsLimitConfig         ResyncIopsInfo                    `xml:"resyncIopsLimitConfig,omitempty"`
+	IscsiConfig                   VsanIscsiTargetServiceConfig      `xml:"iscsiConfig,omitempty"`
+	DataEncryptionConfig          VsanDataEncryptionConfig          `xml:"dataEncryptionConfig,omitempty"`
+	ExtendedConfig                VsanExtendedConfig                `xml:"extendedConfig,omitempty"`
+	DatastoreConfig               VsanDatastoreConfig               `xml:"datastoreConfig,omitempty"`
+	PerfsvcConfig                 VsanPerfsvcConfig                 `xml:"perfsvcConfig,omitempty"`
+	UnmapConfig                   VsanUnmapConfig                   `xml:"unmapConfig,omitempty"`
+	VumConfig                     VsanVumConfig                     `xml:"vumConfig,omitempty"`
+	DataProtectionConfig          VsanDataProtectionInfo            `xml:"dataProtectionConfig,omitempty"`
+	FileServiceConfig             VsanFileServiceConfig             `xml:"fileServiceConfig,omitempty"`
+	BmcConfig                     []VimClusterVsanBmcSpec           `xml:"bmcConfig,omitempty"`
+	MetricsConfig                 VsanMetricsConfig                 `xml:"metricsConfig,omitempty"`
+	RdmaConfig                    VsanRdmaConfig                    `xml:"rdmaConfig,omitempty"`
+	DataInTransitEncryptionConfig VsanDataInTransitEncryptionConfig `xml:"dataInTransitEncryptionConfig,omitempty"`
 }
 
 func init() {
@@ -1435,8 +1436,8 @@ func init() {
 type VsanDataEfficiencyConfig struct {
 	DynamicData
 
-    DedupEnabled                        bool                               `xml:"dedupEnabled"`
-	CompressionEnabled                  bool                               `xml:"compressionEnabled,omitempty"`
+	DedupEnabled       bool `xml:"dedupEnabled"`
+	CompressionEnabled bool `xml:"compressionEnabled,omitempty"`
 }
 
 func init() {
@@ -1446,7 +1447,7 @@ func init() {
 type ResyncIopsInfo struct {
 	DynamicData
 
-	ResyncIops                          int                                `xml:"resyncIops"`
+	ResyncIops int `xml:"resyncIops"`
 }
 
 func init() {
@@ -1456,8 +1457,8 @@ func init() {
 type VsanIscsiTargetServiceConfig struct {
 	DynamicData
 
-	DefaultConfig                       VsanIscsiTargetServiceDefaultConfigSpec    `xml:"defaultConfig,omitempty"`
-	Enabled                             bool                                       `xml:"enabled"`
+	DefaultConfig VsanIscsiTargetServiceDefaultConfigSpec `xml:"defaultConfig,omitempty"`
+	Enabled       bool                                    `xml:"enabled"`
 }
 
 func init() {
@@ -1467,9 +1468,9 @@ func init() {
 type VsanIscsiTargetServiceDefaultConfigSpec struct {
 	DynamicData
 
-	NetworkInterface                    string                             `xml:"networkInterface,omitempty"`
-	Port                                int                                `xml:"port,omitempty"`
-	IscsiTargetAuthSpec                 VsanIscsiTargetAuthSpec            `xml:"iscsiTargetAuthSpec,omitempty"`
+	NetworkInterface    string                  `xml:"networkInterface,omitempty"`
+	Port                int                     `xml:"port,omitempty"`
+	IscsiTargetAuthSpec VsanIscsiTargetAuthSpec `xml:"iscsiTargetAuthSpec,omitempty"`
 }
 
 func init() {
@@ -1479,11 +1480,11 @@ func init() {
 type VsanIscsiTargetAuthSpec struct {
 	DynamicData
 
-	AuthType                            VsanIscsiTargetAuthType            `xml:"authType,omitempty"`
-	UserNameAttachToTarget              string                             `xml:"userNameAttachToTarget,omitempty"`
-	UserSecretAttachToTarget            string                             `xml:"userSecretAttachToTarget,omitempty"`
-	UserNameAttachToInitiator           string                             `xml:"userNameAttachToInitiator,omitempty"`
-	UserSecretAttachToInitiator         string                             `xml:"userSecretAttachToInitiator,omitempty"`
+	AuthType                    VsanIscsiTargetAuthType `xml:"authType,omitempty"`
+	UserNameAttachToTarget      string                  `xml:"userNameAttachToTarget,omitempty"`
+	UserSecretAttachToTarget    string                  `xml:"userSecretAttachToTarget,omitempty"`
+	UserNameAttachToInitiator   string                  `xml:"userNameAttachToInitiator,omitempty"`
+	UserSecretAttachToInitiator string                  `xml:"userSecretAttachToInitiator,omitempty"`
 }
 
 func init() {
@@ -1493,13 +1494,13 @@ func init() {
 type VsanDataEncryptionConfig struct {
 	DynamicData
 
-	EncryptionEnabled                   bool                               `xml:"encryptionEnabled"`
-	KmsProviderId                       KeyProviderId                      `xml:"kmsProviderId,omitempty"`
-	KekId                               string                             `xml:"kekId,omitempty"`
-	HostKeyId                           string                             `xml:"hostKeyId,omitempty"`
-	DekGenerationId                     int64                              `xml:"dekGenerationId,omitempty"`
-	Changing                            bool                               `xml:"changing,omitempty"`
-	EraseDisksBeforeUse                 bool                               `xml:"eraseDisksBeforeUse,omitempty"`
+	EncryptionEnabled   bool          `xml:"encryptionEnabled"`
+	KmsProviderId       KeyProviderId `xml:"kmsProviderId,omitempty"`
+	KekId               string        `xml:"kekId,omitempty"`
+	HostKeyId           string        `xml:"hostKeyId,omitempty"`
+	DekGenerationId     int64         `xml:"dekGenerationId,omitempty"`
+	Changing            bool          `xml:"changing,omitempty"`
+	EraseDisksBeforeUse bool          `xml:"eraseDisksBeforeUse,omitempty"`
 }
 
 func init() {
@@ -1509,11 +1510,11 @@ func init() {
 type VsanExtendedConfig struct {
 	DynamicData
 
-	ObjectRepairTimer                   int64                              `xml:"objectRepairTimer,omitempty"`
-	DisableSiteReadLocality             bool                               `xml:"disableSiteReadLocality,omitempty"`
-	EnableCustomizedSwapObject          bool                               `xml:"enableCustomizedSwapObject,omitempty"`
-	LargeScaleClusterSupport            bool                               `xml:"largeScaleClusterSupport,omitempty"`
-	ProactiveRebalanceInfo              VsanProactiveRebalanceInfo         `xml:"proactiveRebalanceInfo,omitempty"`
+	ObjectRepairTimer          int64                      `xml:"objectRepairTimer,omitempty"`
+	DisableSiteReadLocality    bool                       `xml:"disableSiteReadLocality,omitempty"`
+	EnableCustomizedSwapObject bool                       `xml:"enableCustomizedSwapObject,omitempty"`
+	LargeScaleClusterSupport   bool                       `xml:"largeScaleClusterSupport,omitempty"`
+	ProactiveRebalanceInfo     VsanProactiveRebalanceInfo `xml:"proactiveRebalanceInfo,omitempty"`
 }
 
 func init() {
@@ -1523,8 +1524,8 @@ func init() {
 type VsanProactiveRebalanceInfo struct {
 	DynamicData
 
-	Enabled                             bool                               `xml:"enabled,omitempty"`
-	Threshold                           int                                `xml:"threshold,omitempty"`
+	Enabled   bool `xml:"enabled,omitempty"`
+	Threshold int  `xml:"threshold,omitempty"`
 }
 
 func init() {
@@ -1534,7 +1535,7 @@ func init() {
 type VsanDatastoreConfig struct {
 	DynamicData
 
-	Datastores                          []VsanDatastoreSpec                `xml:"datastores,omitempty"`
+	Datastores []VsanDatastoreSpec `xml:"datastores,omitempty"`
 }
 
 func init() {
@@ -1544,8 +1545,8 @@ func init() {
 type VsanDatastoreSpec struct {
 	DynamicData
 
-	Uuid                                string                             `xml:"uuid"`
-	Name                                string                             `xml:"name"`
+	Uuid string `xml:"uuid"`
+	Name string `xml:"name"`
 }
 
 func init() {
@@ -1555,10 +1556,10 @@ func init() {
 type VsanPerfsvcConfig struct {
 	DynamicData
 
-	Enabled                             bool                               `xml:"enabled"`
-	Profile                             types.VirtualMachineProfileSpec    `xml:"profile,omitempty"`
-	DiagnosticMode                      bool                               `xml:"diagnosticMode,omitempty"`
-	VerboseMode                         bool                               `xml:"verboseMode,omitempty"`
+	Enabled        bool                            `xml:"enabled"`
+	Profile        types.VirtualMachineProfileSpec `xml:"profile,omitempty"`
+	DiagnosticMode bool                            `xml:"diagnosticMode,omitempty"`
+	VerboseMode    bool                            `xml:"verboseMode,omitempty"`
 }
 
 func init() {
@@ -1568,7 +1569,7 @@ func init() {
 type VsanUnmapConfig struct {
 	DynamicData
 
-	Enable                              bool                               `xml:"enable"`
+	Enable bool `xml:"enable"`
 }
 
 func init() {
@@ -1578,7 +1579,7 @@ func init() {
 type VsanVumConfig struct {
 	DynamicData
 
-	BaselinePreferenceType              VsanBaselinePreferenceType         `xml:"baselinePreferenceType"`
+	BaselinePreferenceType VsanBaselinePreferenceType `xml:"baselinePreferenceType"`
 }
 
 func init() {
@@ -1588,10 +1589,10 @@ func init() {
 type VsanDataProtectionInfo struct {
 	DynamicData
 
-	ArchivalTarget                      VsanDataProtectionArchivalLocation   `xml:"archivalTarget,omitempty"`
-	UsageThreshold                      int                                  `xml:"usageThreshold,omitempty"`
-	PairingInfo                         []VsanDataProtectionPairingInfo      `xml:"pairingInfo,omitempty"`
-	IncomingReplicationPort             int                                  `xml:"incomingReplicationPort,omitempty"`
+	ArchivalTarget          VsanDataProtectionArchivalLocation `xml:"archivalTarget,omitempty"`
+	UsageThreshold          int                                `xml:"usageThreshold,omitempty"`
+	PairingInfo             []VsanDataProtectionPairingInfo    `xml:"pairingInfo,omitempty"`
+	IncomingReplicationPort int                                `xml:"incomingReplicationPort,omitempty"`
 }
 
 func init() {
@@ -1601,7 +1602,7 @@ func init() {
 type VsanDataProtectionArchivalLocation struct {
 	DynamicData
 
-	DatastoreUrl                        string                             `xml:"datastoreUrl"`
+	DatastoreUrl string `xml:"datastoreUrl"`
 }
 
 func init() {
@@ -1611,16 +1612,16 @@ func init() {
 type VsanDataProtectionPairingInfo struct {
 	DynamicData
 
-	PairingId                           string                                  `xml:"pairingId,omitempty"`
-	PeerSite                            DataProtectionPeerSiteInfo              `xml:"peerSite,omitempty"`
-	PeerClusterUuid                     string                                  `xml:"peerClusterUuid"`
-	PeerDatastoreUrl                    string                                  `xml:"peerDatastoreUrl"`
-	LocalDatastoreUrl                   string                                  `xml:"localDatastoreUrl"`
-	PeerClusterName                     string                                  `xml:"peerClusterName,omitempty"`
-	PeerDatastoreName                   string                                  `xml:"peerDatastoreName,omitempty"`
-	LocalLoadBalancers                  DataProtectionLoadBalancerBasicInfo     `xml:"localLoadBalancers,omitempty"`
-	PeerLoadBalancers                   DataProtectionLoadBalancerDetailedInfo  `xml:"peerLoadBalancers,omitempty"`
-	DeletePairing                       bool                                    `xml:"deletePairing,omitempty"`
+	PairingId          string                                 `xml:"pairingId,omitempty"`
+	PeerSite           DataProtectionPeerSiteInfo             `xml:"peerSite,omitempty"`
+	PeerClusterUuid    string                                 `xml:"peerClusterUuid"`
+	PeerDatastoreUrl   string                                 `xml:"peerDatastoreUrl"`
+	LocalDatastoreUrl  string                                 `xml:"localDatastoreUrl"`
+	PeerClusterName    string                                 `xml:"peerClusterName,omitempty"`
+	PeerDatastoreName  string                                 `xml:"peerDatastoreName,omitempty"`
+	LocalLoadBalancers DataProtectionLoadBalancerBasicInfo    `xml:"localLoadBalancers,omitempty"`
+	PeerLoadBalancers  DataProtectionLoadBalancerDetailedInfo `xml:"peerLoadBalancers,omitempty"`
+	DeletePairing      bool                                   `xml:"deletePairing,omitempty"`
 }
 
 func init() {
@@ -1630,11 +1631,11 @@ func init() {
 type DataProtectionPeerSiteInfo struct {
 	DynamicData
 
-	Name                                string                                  `xml:"name"`
-	LookupServiceUrl                    string                                  `xml:"lookupServiceUrl,omitempty"`
-	LookupServiceThumbprint             string                                  `xml:"lookupServiceThumbprint,omitempty"`
-	SiteId                              string                                  `xml:"siteId,omitempty"`
-	NodeId                              string                                  `xml:"nodeId,omitempty"`
+	Name                    string `xml:"name"`
+	LookupServiceUrl        string `xml:"lookupServiceUrl,omitempty"`
+	LookupServiceThumbprint string `xml:"lookupServiceThumbprint,omitempty"`
+	SiteId                  string `xml:"siteId,omitempty"`
+	NodeId                  string `xml:"nodeId,omitempty"`
 }
 
 func init() {
@@ -1644,7 +1645,7 @@ func init() {
 type DataProtectionLoadBalancerBasicInfo struct {
 	DynamicData
 
-	HostUuid                            string                                  `xml:"hostUuid"`
+	HostUuid string `xml:"hostUuid"`
 }
 
 func init() {
@@ -1654,9 +1655,9 @@ func init() {
 type DataProtectionLoadBalancerDetailedInfo struct {
 	DynamicData
 
-	Url                                 string                                  `xml:"url"`
-	Thumbprint                          string                                  `xml:"thumbprint,omitempty"`
-	PublicKey                           string                                  `xml:"publicKey"`
+	Url        string `xml:"url"`
+	Thumbprint string `xml:"thumbprint,omitempty"`
+	PublicKey  string `xml:"publicKey"`
 }
 
 func init() {
@@ -1666,9 +1667,9 @@ func init() {
 type VsanFileServiceConfig struct {
 	DynamicData
 
-	Enabled                             bool                                    `xml:"enabled"`
-	Network                             mo.Network                              `xml:"network,omitempty"`
-	Domains                             VsanFileServiceDomainConfig             `xml:"domains,omitempty"`
+	Enabled bool                        `xml:"enabled"`
+	Network mo.Network                  `xml:"network,omitempty"`
+	Domains VsanFileServiceDomainConfig `xml:"domains,omitempty"`
 }
 
 func init() {
@@ -1678,10 +1679,10 @@ func init() {
 type VsanFileServiceDomainConfig struct {
 	DynamicData
 
-	Name                                string                                  `xml:"name,omitempty"`
-	DnsServerAddresses                  []string                                `xml:"dnsServerAddresses,omitempty"`
-	DnsSuffixes                         []string                                `xml:"dnsSuffixes,omitempty"`
-	FileServerIpConfig                  []VsanFileServiceIpConfig               `xml:"fileServerIpConfig,omitempty"`
+	Name               string                    `xml:"name,omitempty"`
+	DnsServerAddresses []string                  `xml:"dnsServerAddresses,omitempty"`
+	DnsSuffixes        []string                  `xml:"dnsSuffixes,omitempty"`
+	FileServerIpConfig []VsanFileServiceIpConfig `xml:"fileServerIpConfig,omitempty"`
 }
 
 func init() {
@@ -1691,9 +1692,9 @@ func init() {
 type VsanFileServiceIpConfig struct {
 	types.HostIpConfig
 
-	Fqdn                                string                                  `xml:"fqdn,omitempty"`
-	IsPrimary                           bool                                    `xml:"isPrimary,omitempty"`
-	Gateway                             string                                  `xml:"gateway"`
+	Fqdn      string `xml:"fqdn,omitempty"`
+	IsPrimary bool   `xml:"isPrimary,omitempty"`
+	Gateway   string `xml:"gateway"`
 }
 
 func init() {
@@ -1701,10 +1702,10 @@ func init() {
 }
 
 type VimClusterVsanBmcSpec struct {
-	Host                                mo.HostSystem                           `xml:"host"`
-	BmcAddress                          string                                  `xml:"bmcAddress"`
-	BmcUserName                         string                                  `xml:"bmcUserName"`
-	BmcPassword                         string                                  `xml:"bmcPassword,omitempty"`
+	Host        mo.HostSystem `xml:"host"`
+	BmcAddress  string        `xml:"bmcAddress"`
+	BmcUserName string        `xml:"bmcUserName"`
+	BmcPassword string        `xml:"bmcPassword,omitempty"`
 }
 
 func init() {
@@ -1714,7 +1715,7 @@ func init() {
 type VsanMetricsConfig struct {
 	DynamicData
 
-	Profiles                            []VsanMetricProfile                     `xml:"profiles,omitempty"`
+	Profiles []VsanMetricProfile `xml:"profiles,omitempty"`
 }
 
 func init() {
@@ -1724,7 +1725,7 @@ func init() {
 type VsanMetricProfile struct {
 	DynamicData
 
-	authToken                           string                                  `xml:"authToken"`
+	authToken string `xml:"authToken"`
 }
 
 func init() {
@@ -1734,7 +1735,7 @@ func init() {
 type VsanRdmaConfig struct {
 	DynamicData
 
-	RdmaEnabled                         bool                                    `xml:"rdmaEnabled"`
+	RdmaEnabled bool `xml:"rdmaEnabled"`
 }
 
 func init() {
@@ -1744,8 +1745,8 @@ func init() {
 type VsanDataInTransitEncryptionConfig struct {
 	DynamicData
 
-	Enabled                             bool                                    `xml:"enabled,omitempty"`
-	RekeyInterval                       int                                     `xml:"rekeyInterval,omitempty"`
+	Enabled       bool `xml:"enabled,omitempty"`
+	RekeyInterval int  `xml:"rekeyInterval,omitempty"`
 }
 
 func init() {

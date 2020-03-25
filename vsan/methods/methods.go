@@ -129,9 +129,9 @@ func VsanQuerySyncingVsanObjects(ctx context.Context, r soap.RoundTripper, req *
 }
 
 type VsanClusterGetConfigBody struct {
-	Req    *types.VsanClusterGetConfig               `xml:"urn:vsan VsanClusterGetConfig,omitempty"`
-	Res    *types.VsanClusterGetConfigResponse       `xml:"urn:vsan VsanClusterGetConfigResponse,omitempty"`
-	Fault_ *soap.Fault                               `xml:"http://schemas.xmlsoap.org/soap/envelope/ Fault,omitempty"`
+	Req    *types.VsanClusterGetConfig         `xml:"urn:vsan VsanClusterGetConfig,omitempty"`
+	Res    *types.VsanClusterGetConfigResponse `xml:"urn:vsan VsanClusterGetConfigResponse,omitempty"`
+	Fault_ *soap.Fault                         `xml:"http://schemas.xmlsoap.org/soap/envelope/ Fault,omitempty"`
 }
 
 func (b *VsanClusterGetConfigBody) Fault() *soap.Fault { return b.Fault_ }

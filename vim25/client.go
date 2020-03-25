@@ -124,7 +124,6 @@ func (c *Client) UseServiceVersion(kind ...string) error {
 	return nil
 }
 
-
 // RoundTrip dispatches to the RoundTripper field.
 func (c *Client) RoundTrip(ctx context.Context, req, res soap.HasFault) error {
 	return c.RoundTripper.RoundTrip(ctx, req, res)
